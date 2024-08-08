@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Message } from 'src/app/data/message';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
+import { MessageService } from 'src/app/services/message-service/message.service';
 import { SeedService } from 'src/app/services/seed-service/seed.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class HeaderComponent {
 
   isAuthenticated: boolean = false;
 
-  constructor(private seedService: SeedService, private authService: AuthService) {
+  constructor(private seedService: SeedService, private authService: AuthService, private messageService: MessageService) {
     this.authService.isAuthenticated.subscribe(
       isAuthenticated => this.isAuthenticated = isAuthenticated
     );
@@ -38,9 +39,9 @@ export class HeaderComponent {
         this.authService.isAdmin.next(false);
         this.authService.userId.next(0);
 
-        alert(Message.getString(ok as Message));
+        this.messageService.message.next(ok as Message);
       },
-      error => alert(Message.getString(error.error as Message))
+      error => this.messageService.message.next(error.error as Message)
     );
   }
 }

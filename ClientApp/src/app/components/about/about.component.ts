@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Message } from 'src/app/data/message';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { IndexService } from 'src/app/services/index-service/index.service';
+import { MessageService } from 'src/app/services/message-service/message.service';
 
 @Component({
   selector: 'app-about',
@@ -13,7 +15,7 @@ export class AboutComponent {
   description: string = "";
   newDescription: string = "";
 
-  constructor(private authService: AuthService, private indexService: IndexService) {
+  constructor(private authService: AuthService, private indexService: IndexService, private messageService: MessageService) {
     this.authService.isAdmin.subscribe(
       isAdmin => this.isAdmin = isAdmin
     );
@@ -25,7 +27,12 @@ export class AboutComponent {
 
   changeDescription() {
     this.indexService.changeDescription(this.newDescription).subscribe(
-      (newDescription: any) => this.description = newDescription.value
+      ok => {
+        this.messageService.message.next(ok as Message);
+        this.indexService.getDescription().subscribe(
+          (newDescription: any) => this.description = newDescription.value
+        );
+      }
     );
   }
 }

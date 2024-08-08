@@ -1,4 +1,5 @@
 ﻿using InforceTask.Data;
+using InforceTask.DTOs;
 using InforceTask.Models;
 using InforceTask.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -56,12 +57,13 @@ namespace InforceTask.Controllers
                 User user = this.AuthService.GetUser(this.HttpContext);
                 this.IndexService.ChangeDescription(descriptionText, user);
 
-                Description description = this.DbContext.Descriptions.First();
-                return Ok(description);
+                MessageDTO message = MessageDTO.CreateSuccessful(Constants.TITLE_DESCRIPTION_CHANGE, Constants.DESC_CHANGE_SUCC); 
+                return Ok(message);
             }
             catch
             {
-                return BadRequest();
+                MessageDTO message = MessageDTO.CreateFailed(Constants.TITLE_DESCRIPTION_CHANGE, Constants.DESC_CHANGE_FAIL);
+                return BadRequest(message);
             }
         }
     }

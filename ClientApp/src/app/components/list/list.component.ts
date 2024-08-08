@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Message } from 'src/app/data/message';
 import { UrlListItem } from 'src/app/data/urlListItem';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
+import { MessageService } from 'src/app/services/message-service/message.service';
 import { UrlService } from 'src/app/services/url-service/url.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class ListComponent implements OnInit {
   isAdmin: boolean = false;
   isAuthenticated: boolean = false;
   
-  constructor(private urlService: UrlService, private authService: AuthService) {
+  constructor(private urlService: UrlService, private authService: AuthService, private messageService: MessageService) {
     this.authService.userId.subscribe(
       userId => this.userId = userId
     );
@@ -38,9 +39,9 @@ export class ListComponent implements OnInit {
             urls => this.urls = urls as UrlListItem[]
           );
           
-          alert(Message.getString(ok as Message));
+          this.messageService.message.next(ok as Message);
         },
-        error => alert(Message.getString(error.error as Message))
+        error => this.messageService.message.next(error.error as Message)
       );
     }
   }

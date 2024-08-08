@@ -15,6 +15,7 @@
         public const string TITLE_LOGOUT = "Logout";
         public const string TITLE_ADD_URL = "Adding URL";
         public const string TITLE_DEL_URL = "Deleting URL";
+        public const string TITLE_DESCRIPTION_CHANGE = "Description change";
 
         public const string LOGIN_SUCC = "User logged in successfully!";
         public const string LOGIN_FAIL = "Login failed!";
@@ -30,5 +31,8 @@
 
         public const string DEL_URL_SUCC = "URL deleted successfully!";
         public const string DEL_URL_FAIL = "URL cannot be deleted!";
+
+        public const string DESC_CHANGE_SUCC = "Description changed successfully!";
+        public const string DESC_CHANGE_FAIL = "Changing description failed!";
     }
 }

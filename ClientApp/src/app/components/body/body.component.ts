@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Constants } from 'src/app/data/constants';
 import { Message } from 'src/app/data/message';
+import { MessageService } from 'src/app/services/message-service/message.service';
 
 @Component({
   selector: 'app-body',
@@ -10,9 +12,17 @@ export class BodyComponent {
 
   messages: Message[] = [];
 
-  constructor() {
-    
+  constructor(private messageService: MessageService) {
+    this.messageService.message.subscribe(
+      newMessage => {
+        this.messages.push(newMessage);
+        setTimeout(() => {
+          this.messages.shift();
+        }, Constants.messageLifetime + 1000);
+      }
+    );
   }
+
 
   
 }

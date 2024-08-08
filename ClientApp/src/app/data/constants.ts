@@ -5,4 +5,6 @@ export class Constants {
 
     static successful: string = "Successful";
     static failed: string = "Failed";
+
+    static messageLifetime: number = 5000;
 }

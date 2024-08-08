@@ -13,6 +13,7 @@ import { ShortenerComponent } from './components/shortener/shortener.component';
 import { ListComponent } from './components/list/list.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { AboutComponent } from './components/about/about.component';
+import { MessageComponent } from './components/message/message.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AboutComponent } from './components/about/about.component';
     ShortenerComponent,
     ListComponent,
     SettingsComponent,
-    AboutComponent
+    AboutComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

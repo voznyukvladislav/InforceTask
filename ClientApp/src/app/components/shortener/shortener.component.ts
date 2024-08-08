@@ -4,6 +4,7 @@ import { Api } from 'src/app/data/api';
 import { Constants } from 'src/app/data/constants';
 import { Message } from 'src/app/data/message';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
+import { MessageService } from 'src/app/services/message-service/message.service';
 import { SettingsService } from 'src/app/services/settings-service/settings.service';
 import { UrlService } from 'src/app/services/url-service/url.service';
 
@@ -20,7 +21,7 @@ export class ShortenerComponent {
 
   isAuthenticated: boolean = false;
 
-  constructor(private urlService: UrlService, private settingsService: SettingsService, private authService: AuthService, private router: Router) {
+  constructor(private urlService: UrlService, private settingsService: SettingsService, private authService: AuthService, private messageService: MessageService, private router: Router) {
     this.settingsService.hashLength.subscribe(
       hashLength => this.hashLength = hashLength
     );
@@ -53,9 +54,9 @@ export class ShortenerComponent {
           this.originalUrl = "";
           this.shortenedUrl = "";
 
-          alert(Message.getString(ok as Message));
+          this.messageService.message.next(ok as Message);
         },
-        error => alert(Message.getString(error.error as Message))
+        error => this.messageService.message.next(error.error as Message)
       )
     }
   }

@@ -1,0 +1,5 @@
+<div class="message-wrapper" #messageElement *ngIf="message.title">
+    <div class="header">{{message.title}}</div>
+    <div class="line" [ngClass]="{'green': message.status == successful, 'red': message.status == failed}"></div>
+    <div class="message">{{message.value}}</div>
+</div>

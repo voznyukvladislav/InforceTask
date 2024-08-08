@@ -6,6 +6,7 @@ import { AuthForm } from 'src/app/data/authForm';
 import { Constants } from 'src/app/data/constants';
 import { Message } from 'src/app/data/message';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
+import { MessageService } from 'src/app/services/message-service/message.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent {
 
   isAuthenticated: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(
+    private authService: AuthService, private messageService: MessageService, private router: Router) {
     this.authService.isAuthenticated.subscribe(
       isAuthenticated => {
         this.isAuthenticated = isAuthenticated
@@ -55,9 +57,9 @@ export class LoginComponent {
           isAdmin => this.authService.isAdmin.next(isAdmin as boolean)
         );
 
-        alert(Message.getString(ok as Message));
+        this.messageService.message.next(ok as Message);
       },
-      error => alert(Message.getString(error.error as Message))
+      error => this.messageService.message.next(error.error as Message)
     );
   }
 
@@ -65,9 +67,9 @@ export class LoginComponent {
     this.authService.registration(this.authForm).subscribe(
       ok => {
         this.authService.isAuthenticated.next(true);
-        alert(Message.getString(ok as Message));
+        this.messageService.message.next(ok as Message);
       },
-      error => alert(Message.getString(error.error as Message))
+      error => this.messageService.message.next(error.error as Message)
     );
   }
 }

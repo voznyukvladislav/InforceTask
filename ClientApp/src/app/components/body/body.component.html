@@ -1,3 +1,4 @@
 <div class="body">
     <router-outlet></router-outlet>
+    <app-message *ngFor="let message of messages" [message]="message"></app-message>
 </div>
