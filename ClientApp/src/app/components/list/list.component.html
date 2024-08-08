@@ -1,0 +1,24 @@
+<div class="list-wrapper">
+    <div class="header" *ngIf="urls.length != 0">List</div>
+    <div class="list-container">
+        <div class="descriptor" *ngIf="urls.length == 0">List is empty</div>
+        <table class="table" *ngIf="urls.length != 0">
+            <tr class="table-row bb">
+                <td class="table-cell">Url Id</td>
+                <td class="table-cell">Original</td>
+                <td class="table-cell">Shortened</td>
+                <td class="table-cell">Created At</td>
+                <td class="table-cell">User Id</td>
+                <td class="table-cell"></td>
+            </tr>
+            <tr class="table-row" *ngFor="let url of urls; let i = index" [ngClass]="{'bb': i < urls.length - 1}">
+                <td class="table-cell">{{url.urlId}}</td>
+                <td class="table-cell"><a class="reference" _target="blank" href="{{url.originalUrl}}">{{url.originalUrl}}</a></td>
+                <td class="table-cell"><a class="reference" _target="blank" href="{{url.shortenedUrl}}">{{url.shortenedUrl}}</a></td>
+                <td class="table-cell">{{url.createdAt}}</td>
+                <td class="table-cell">{{url.userId}}</td>
+                <td class="table-cell cross" (click)="delete(url.urlId, url.userId)" [ngClass]="{'available': userId == url.userId || isAdmin }">×</td>
+            </tr>
+        </table>
+    </div>
+</div>

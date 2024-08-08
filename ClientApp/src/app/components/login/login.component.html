@@ -1,0 +1,9 @@
+<div class="login-wrapper">
+    <div class="header">{{title}}</div>
+    <div class="login-form" (keyup.enter)="action()">
+        <input type="text" placeholder="Login..." class="input" [(ngModel)]="authForm.login">
+        <input type="password" placeholder="Password..." class="input" [(ngModel)]="authForm.password">
+        <div class="button" (click)="action()">{{title}}</div>
+        <div class="text" (click)="changeAction()">Or {{alternativeTitle}}...</div>
+    </div>
+</div>

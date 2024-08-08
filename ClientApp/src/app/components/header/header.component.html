@@ -1,0 +1,14 @@
+<div class="header">
+    <div class="header-items-container">
+        <a routerLink="" class="item">Home</a>
+        <div class="header-items-container">
+            <a routerLink="/about" class="item">About</a>
+            <a routerLink="/shortener" class="item" *ngIf="isAuthenticated">Shortener</a>
+            <a routerLink="/list" class="item">List</a>
+            <a routerLink="/settings" class="item" *ngIf="isAuthenticated">Settings</a>
+            <a routerLink="/login" class="item" *ngIf="!isAuthenticated">Login</a>
+            <a class="item" *ngIf="isAuthenticated" (click)="logout()">Logout</a>
+            <a class="item" *ngIf="showSeed" (click)="seed()">Seed</a>
+        </div>
+    </div>
+</div>

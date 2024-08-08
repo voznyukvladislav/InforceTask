@@ -1,0 +1,8 @@
+<div class="shortener-wrapper">
+    <div class="header">Shortener</div>
+    <div class="shortener-form">
+        <input type="text" class="input" placeholder="Original URL..." (input)="checkUrl()" [(ngModel)]="originalUrl">
+        <input type="text" class="input-readonly" [value]="shortenedUrl" placeholder="Shortened URL..." readonly>
+        <div class="button" (click)="addUrl()">Add</div>
+    </div>    
+</div>

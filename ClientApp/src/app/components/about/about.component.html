@@ -1,0 +1,18 @@
+<div class="about-page-wrapper">
+    <div class="about-wrapper" *ngIf="isAdmin">
+        <div class="header">Change description</div>
+        <div class="about-container">
+            <textarea class="input" [(ngModel)]="newDescription"></textarea>
+            <div class="button" (click)="changeDescription()">Apply</div>
+        </div>
+    </div>
+    <div class="about-wrapper">
+        <div class="header" *ngIf="description">About</div>
+        <div class="about-container" *ngIf="description">
+            {{description}}
+        </div>
+        <div class="header" *ngIf="!description">
+            Description doesn't exist!
+        </div>
+    </div>
+</div>
